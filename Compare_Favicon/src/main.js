@@ -1,38 +1,29 @@
-import gm from "gm"
-import Jimp from "jimp";
-import sharp from "sharp";
 import ico from "icojs";
-import fs from 'fs'
+import fs from "fs";
+import Jimp from "jimp";
+import axios from "axios";
 
-export default function main () {
-    // console.log("main");
-    var options = {
-        file: '/src/image/favicon1.jpg',
-        // highlightColor: 'yellow',
-        tolerance: 0.02
-      }
-    const buffer = fs.readFileSync('./image/favicon.ico');
-    ico.parse(buffer, 'image/png').then( async images => {
-        const image = images.pop();
-        const imgBuffer = Buffer.from(image.buffer)
-        fs.writeFileSync('./image/favicon.png', imgBuffer)
-        const JimpImage = await Jimp.read('./image/favicon.png');
-        const JimpImage1 = await Jimp.read('./image/favicon1.jpg')
-        console.log(JimpImage, 'JimpImage');
-        // console.log(images.pop(), 'images');
-        const diff = Jimp.diff(JimpImage, JimpImage1)
-        const distance = Jimp.distance(JimpImage, JimpImage1)
-        console.log(diff.percent, 'diff');
-        console.log(distance, 'distance');
-        // Jimp.read('./image/favicon.png').then((err, img) => {
-        // if(err) console.log(err, 'err');
-        // console.log(img, 'img');
-        // })
-    })
-    
-    //   Jimp.read('./image/favicon.png').then((err, img) => {
-    //     if(err) console.log(err, 'err');
-    //     console.log(img, 'img');
-    }
+export default async function main() {
+  const siteURL = "8.219.208.165";
 
-main()
+  // ico to png
+  const { data } = await axios.get(`https://icon.horse/icon/${siteURL}`, {
+    responseType: "arraybuffer",
+  });
+  const pngConvert = (await ico.parse(data, "image/png"))[0];
+  // png to buffer
+  const pngBuffer = Buffer.from(pngConvert.buffer);
+  // base64 to buffer
+  const base64 = fs.readFileSync("./image/favicon.txt", "utf-8");
+  const base64buffer = Buffer.from(base64, "base64");
+  // read both pics
+  const JimpImage = await Jimp.read(base64buffer);
+  const JimpImage1 = await Jimp.read(pngBuffer);
+  // compare pics
+  const diff = Jimp.diff(JimpImage, JimpImage1);
+  const distance = Jimp.distance(JimpImage, JimpImage1);
+  console.log(diff.percent, "diff");
+  console.log(distance, "distance");
+}
+
+main();
