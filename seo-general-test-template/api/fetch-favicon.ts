@@ -1,7 +1,10 @@
+export const revalidate = 0;
+
 export default async function FetchFavicon(siteUrl?: string) {
-  const siteURL = siteUrl ?? "8.219.208.165";
+  const siteURL = siteUrl ?? "www.google.com";
   const url = `https://icon.horse/icon/${siteURL}`;
 
-  const response = await fetch(url);
-  return response.arrayBuffer();
+  return fetch(url, {
+    cache: "no-store",
+  }).then((response) => response.arrayBuffer());
 }

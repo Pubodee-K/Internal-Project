@@ -1,9 +1,12 @@
+import { Database } from "@/types/supabase";
 import { createClient } from "@supabase/supabase-js";
+
+export const revalidate = 0;
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-const supabase = createClient(supabaseUrl, supabaseKey, {
+const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
   auth: {
     persistSession: false,
   },
@@ -12,8 +15,6 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 async function getAllData(tableName: string, query: string) {
   try {
     const { data, error } = await supabase.from(tableName).select(query);
-    // console.log(data, "data");
-
     if (error) {
       console.log("Error fetching data: ", error.message);
       return error;

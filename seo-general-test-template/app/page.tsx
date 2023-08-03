@@ -1,35 +1,26 @@
-"use client";
-
 import CompareFavicon from "@/back-end/compare-favicon/compare-favicon";
-import { createClient } from "@supabase/supabase-js";
+import {
+  faviconRow,
+  project_nameRow,
+  project_name_join_all,
+  urlRow,
+} from "@/types/interfaces";
+import { getFilteredData } from "@/utils/supabase-fetch";
 import Image from "next/image";
-import { useEffect } from "react";
 
 export const revalidate = 0;
 
-export default function Home() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  console.log(supabaseUrl, "supabaseKey");
+export default async function Home() {
+  const supabaseData: project_name_join_all = (
+    await getFilteredData(
+      "project_names",
+      "id, favicons(favicons), urls(url)",
+      "name",
+      "Alibaba"
+    )
+  ).pop();
 
-  const supabase = createClient(supabaseUrl, supabaseKey, {
-    auth: {
-      persistSession: false,
-    },
-  });
-
-  const fetchData = async () => {
-    const { data: favicons, error } = await supabase
-      .from("favicons")
-      .select("*")
-      .eq("id", 3);
-    if (!error) console.log(favicons, "data");
-  };
-  // useEffect(() => {
-  fetchData();
-  // });
-
-  // CompareFavicon();
+  const result = await CompareFavicon(supabaseData);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
