@@ -6,16 +6,16 @@ import Image from "next/image";
 export const revalidate = 0;
 
 export default async function Home() {
-  const supabaseData: project_name_join_all = (
-    await getFilteredData(
-      "project_names",
-      "id, favicons(favicons), urls(url)",
-      "name",
-      "Alibaba"
-    )
-  ).pop();
+  // const supabaseData: project_name_join_all = (
+  //   await getFilteredData(
+  //     "project_names",
+  //     "id, favicons(favicons), urls(url)",
+  //     "name",
+  //     "Alibaba"
+  //   )
+  // ).pop();
 
-  const result = await CompareFavicon(supabaseData);
+  // const result = await CompareFavicon(supabaseData);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

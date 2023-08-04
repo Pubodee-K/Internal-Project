@@ -11,6 +11,15 @@ const nextConfig = {
       ],
     },
   ],
+  images: {
+    remotePatterns: [
+      {
+        hostname: "**",
+        port: "",
+        protocol: "https",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
