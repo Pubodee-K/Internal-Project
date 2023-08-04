@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["clsx", "favicons", "icojs", "SUPABASE"]
+  "cSpell.words": [
+    "autodocs",
+    "clsx",
+    "favicons",
+    "icojs",
+    "SUPABASE",
+    "tailwindcss"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 }

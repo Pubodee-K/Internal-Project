@@ -1,6 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 
-import { cn } from "@/front-end/utils/cn";
+import { cn } from "@/app/front-end/utils/cn";
 
 import { getDefaultHTMLTag } from "./helpers";
 

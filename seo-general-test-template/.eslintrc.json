@@ -1,6 +1,27 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "plugins": [],
+  "rules": {
+    "no-console": "warn",
+    "default-case": "warn",
+    "no-empty-function": "warn",
+    "no-nested-ternary": "warn",
+    "sort-keys": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "plugins": ["unused-imports", "@typescript-eslint"],
+      "rules": {
+        "unused-imports/no-unused-imports": "warn",
+        "no-unused-vars": "warn",
+        "@typescript-eslint/consistent-type-imports": "warn",
+        "@typescript-eslint/no-explicit-any": "warn"
+      }
+    }
   ]
 }

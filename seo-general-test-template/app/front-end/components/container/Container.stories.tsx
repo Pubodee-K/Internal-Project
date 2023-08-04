@@ -1,4 +1,4 @@
-import { Typography } from "@/front-end/components/typography";
+import { Typography } from "@/app/front-end/components/typography";
 
 import Container from "./Container";
 

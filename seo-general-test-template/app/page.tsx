@@ -1,10 +1,5 @@
-import CompareFavicon from "@/back-end/compare-favicon/compare-favicon";
-import {
-  faviconRow,
-  project_nameRow,
-  project_name_join_all,
-  urlRow,
-} from "@/types/interfaces";
+import { CompareFavicon } from "@/app/back-end/compare-favicon/";
+import { project_name_join_all } from "@/types/interfaces";
 import { getFilteredData } from "@/utils/supabase-fetch";
 import Image from "next/image";
 
