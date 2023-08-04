@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 
-import customTagExample from "@/front-end/images/examples/custom-tag-example.png";
+import customTagExample from "@/app/front-end/images/examples/custom-tag-example.png";
 
 import Typography from "./Typography";
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef } from "react";
-// import { ButtonPurchase } from "@/front-end/components/button-purchase";
+// import { ButtonPurchase } from "@/app/front-end/components/button-purchase";
 import { Separator } from "@/app/front-end/components/separator";
 import { Typography } from "@/app/front-end/components/typography";
 

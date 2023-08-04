@@ -1,3 +1,4 @@
+import "remixicon/fonts/remixicon.css";
 import "../app/globals.css"
 import type { Preview } from "@storybook/react";
 
