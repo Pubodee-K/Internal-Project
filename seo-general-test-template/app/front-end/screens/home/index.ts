@@ -1,5 +1,3 @@
-export { default as SpecialCookingKitsProducts } from "./SpecialCookingKitsProducts";
+export { default as ProjectCardsList } from "./ProjectCardsList";
 
-export type {
-  SpecialCookingKitsProductsProps,
-} from "./types";
+export type { SpecialCookingKitsProductsProps } from "./types";

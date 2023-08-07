@@ -10,25 +10,23 @@ import { getAllData } from "@/utils/supabase-fetch";
 import { useEffect, useState } from "react";
 import { getImageFormat } from "../../utils/get-image-format";
 
-export default function SpecialCookingKitsProducts({
+export default function ProjectCardsList({
   className = "",
   ...props
 }: SpecialCookingKitsProductsProps) {
   const [projects, setProjects] = useState<any>([]);
 
   const fetchData = async () => {
-    const supabaseData: project_name_join_all[] = (
-    await getAllData(
+    const supabaseData: project_name_join_all[] = await getAllData(
       "project_names",
-      "*, favicons(favicons), urls(url)",
-    )
-  );
-  setProjects(supabaseData);
-  }
+      "*, favicons(favicons), urls(url)"
+    );
+    setProjects(supabaseData);
+  };
 
   useEffect(() => {
     fetchData();
-  }, [])  
+  }, []);
 
   return (
     <div
@@ -38,11 +36,11 @@ export default function SpecialCookingKitsProducts({
         className
       )}
     >
-      {projects.map((project: project_name_join_all) => {        
+      {projects.map((project: project_name_join_all) => {
         const favicon = project.favicons.pop();
         const base64 = getImageFormat(favicon?.favicons!);
-        console.log(base64, 'base64');
-        
+        console.log(base64, "base64");
+
         return (
           <CardProject
             key={project.id}
@@ -52,9 +50,9 @@ export default function SpecialCookingKitsProducts({
             className=""
             imgAltText={`${project.name} Project Cover`}
             imgSrc={getImageFormat(favicon?.favicons!)}
-            projectDetailsUrl={`/x`}
+            projectDetailsUrl={`/project/${project.id}`}
           />
-        )
+        );
       })}
     </div>
   );
